@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
+    "start": "nx serve nx-prac-nest-js",
+    "build": "nx build nx-prac-nest-js",
+    "serve" : "nx serve nx-prac-nest-js",
+    "test": "nx test nx-prac-nest-js"
   },
   "private": true,
   "dependencies": {
