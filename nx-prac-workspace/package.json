@@ -5,16 +5,18 @@
   "scripts": {
     "start": "nx serve nx-prac-nest-js",
     "build": "nx build nx-prac-nest-js",
-    "serve" : "nx serve nx-prac-nest-js",
+    "serve": "nx serve nx-prac-nest-js",
     "test": "nx test nx-prac-nest-js"
   },
   "private": true,
   "dependencies": {
-    "@nestjs/common": "^7.0.0",
-    "@nestjs/core": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",
+    "swagger-ui-express": "^4.1.6",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
