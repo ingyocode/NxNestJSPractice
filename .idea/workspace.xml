@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="Add Repo name and Add Method">
+    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="refactor: Delete Testing Files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/app/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +16,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1z4rneRxZg2IUZ85abN2r7lWPWN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -21,7 +26,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/nx-prac-workspace/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -31,6 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633418369690</updated>
+      <workItem from="1633422210527" duration="605000" />
     </task>
     <task id="LOCAL-00001" summary="Create Nest App with Nx">
       <created>1633418873534</created>
@@ -53,8 +70,32 @@
       <option name="project" value="LOCAL" />
       <updated>1633419757520</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update XML file">
+      <created>1633419830901</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1633419830901</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update Yarn-Lock file">
+      <created>1633419883082</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1633419883082</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactor: Delete Testing Files">
+      <created>1633422779635</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1633422779635</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -66,10 +107,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create Nest App with Nx" />
     <MESSAGE value="Add Repo name and Add Method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Repo name and Add Method" />
+    <MESSAGE value="Update XML file" />
+    <MESSAGE value="Update Yarn-Lock file" />
+    <MESSAGE value="refactor: Delete Testing Files" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Delete Testing Files" />
   </component>
 </project>
