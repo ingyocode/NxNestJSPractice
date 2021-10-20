@@ -1,0 +1,190 @@
+<!--
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Upload Files</title>
+</head>
+<body>
+<h2>File Upload</h2>
+Select file
+<input type="file" id="filename"/>
+<br>
+<input type="button" value="Connect" onClick="connectChatServer()"/>
+<br>
+<input type="button" value="Upload" onClick="sendFile()"/>
+<input type="button" value="test" onclick="fileTest()">
+<script>
+  let ws;
+  function connectChatServer() {
+    ws = new WebSocket("ws://localhost:8080");
+    ws.binaryType = "arraybuffer";
+    ws.onopen = function () {
+      alert("Connected.")
+    };
+    ws.onmessage = function (evt) {
+      alert(evt.msg);
+    };
+    ws.onclose = function () {
+      alert("Connection is closed...");
+    };
+    ws.onerror = function (e) {
+      alert(e.msg);
+    }
+  }
+  function sendFile() {
+    let file = document.getElementById('filename').files[0];
+    let reader = new FileReader();
+    let rawData = new ArrayBuffer();
+    reader.loadend = function () {
+    }
+    reader.onload = function (e) {
+      console.log(e)
+      rawData = e.target.result;
+      ws.send(rawData);
+      alert("the File has been transferred.")
+    }
+    reader.readAsArrayBuffer(file);
+  }
+  function fileTest() {
+    let ws = new WebSocket("ws://localhost:8080");
+    ws.onopen = function () {
+      ws.send(
+        JSON.stringify({
+          event:'file'
+        }),
+      document.getElementById('filename').files[0],
+      );
+      ws.onmessage = function (data) {
+        console.log(data)
+      }
+    }
+  }
+</script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload Client</title>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+
+    let ws = null;
+
+    function connector(){
+
+      let url = "ws://localhost:8080";
+
+      ws = new WebSocket(url);
+      console.log(ws)
+      ws.binaryType="arraybuffer";
+      ws.onopen=function(){
+        console.log("연결 완료");
+      };
+
+      ws.onmessage = function(e){
+        console.log(e.msg);
+      };
+
+      ws.onclose = function() {
+        console.log("연결 종료");
+      };
+      ws.onerror = function(e) {
+        alert(e.msg);
+      }
+    }
+
+    function sendFile(){
+
+      var file = document.getElementById('file').files[0];
+      let rawDataString;
+      console.log(file)
+
+      const fileObject = {
+        'lastModified'     : file.lastModified,
+        'lastModifiedDate' : file.lastModifiedDate,
+        'name'             : file.name,
+        'size'             : file.size,
+        'type'             : file.type,
+      }
+
+      let fileData = file;
+      fileData.toJSON = function() {
+        return {
+          'lastModified'     : file.lastModified,
+          'lastModifiedDate' : file.lastModifiedDate,
+          'name'             : file.name,
+          'size'             : file.size,
+          'type'             : file.type,
+        };
+      }
+      JSON.stringify(fileData);
+      console.log(fileData)
+      console.log
+
+      ws.binaryType = 'arraybuffer';
+      ws.send(JSON.stringify(
+        {
+          "event":"test",
+          "data":fileData
+        }
+      ))
+      console.log('test')
+
+      var reader = new FileReader();
+      var rawData = new ArrayBuffer();
+
+      reader.loadend = function() {}
+
+      reader.onload = function(e) {
+        rawData = e.target.result;
+        console.log(rawData)
+        rawData.toJSON = function() {
+          return {
+            'lastModified'     : file.lastModified,
+            'lastModifiedDate' : file.lastModifiedDate,
+            'name'             : file.name,
+            'size'             : file.size,
+            'type'             : file.type,
+          };
+        }
+        JSON.stringify(rawData);
+        console.log(rawData)
+        ws.send(JSON.stringify(
+          {
+            "event":"test",
+            "data":rawData
+          }
+        ));
+
+        console.log("파일 전송이 완료 되었습니다.")
+        ws.onmessage = function (e) {
+          alert('!!')
+          console.log(e.data)
+        }
+        ws.send('end');
+      }
+
+      reader.readAsArrayBuffer(file);
+    }
+
+    function addEvent(){
+      document.getElementById("connect").addEventListener("click", connector, false);
+      document.getElementById("send").addEventListener("click", sendFile, false);
+    }
+
+    window.addEventListener("load", addEvent, false);
+  </script>
+
+</head>
+<body>
+
+<input id="file" type="file" >
+<input id="connect" type="button" value="connect">
+<input id="send" type="button" value="send">
+
+</body>
+</html>
