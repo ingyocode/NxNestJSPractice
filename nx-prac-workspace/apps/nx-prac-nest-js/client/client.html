@@ -1,190 +1,245 @@
-<!--
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Upload Files</title>
-</head>
-<body>
-<h2>File Upload</h2>
-Select file
-<input type="file" id="filename"/>
-<br>
-<input type="button" value="Connect" onClick="connectChatServer()"/>
-<br>
-<input type="button" value="Upload" onClick="sendFile()"/>
-<input type="button" value="test" onclick="fileTest()">
-<script>
-  let ws;
-  function connectChatServer() {
-    ws = new WebSocket("ws://localhost:8080");
-    ws.binaryType = "arraybuffer";
-    ws.onopen = function () {
-      alert("Connected.")
-    };
-    ws.onmessage = function (evt) {
-      alert(evt.msg);
-    };
-    ws.onclose = function () {
-      alert("Connection is closed...");
-    };
-    ws.onerror = function (e) {
-      alert(e.msg);
-    }
-  }
-  function sendFile() {
-    let file = document.getElementById('filename').files[0];
-    let reader = new FileReader();
-    let rawData = new ArrayBuffer();
-    reader.loadend = function () {
-    }
-    reader.onload = function (e) {
-      console.log(e)
-      rawData = e.target.result;
-      ws.send(rawData);
-      alert("the File has been transferred.")
-    }
-    reader.readAsArrayBuffer(file);
-  }
-  function fileTest() {
-    let ws = new WebSocket("ws://localhost:8080");
-    ws.onopen = function () {
-      ws.send(
-        JSON.stringify({
-          event:'file'
-        }),
-      document.getElementById('filename').files[0],
-      );
-      ws.onmessage = function (data) {
-        console.log(data)
-      }
-    }
-  }
-</script>
-</body>
-</html>
--->
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>File Upload Client</title>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-
-    let ws = null;
-
-    function connector(){
-
-      let url = "ws://localhost:8080";
-
-      ws = new WebSocket(url);
-      console.log(ws)
-      ws.binaryType="arraybuffer";
-      ws.onopen=function(){
-        console.log("연결 완료");
-      };
-
-      ws.onmessage = function(e){
-        console.log(e.msg);
-      };
-
-      ws.onclose = function() {
-        console.log("연결 종료");
-      };
-      ws.onerror = function(e) {
-        alert(e.msg);
-      }
-    }
-
-    function sendFile(){
-
-      var file = document.getElementById('file').files[0];
-      let rawDataString;
-      console.log(file)
-
-      const fileObject = {
-        'lastModified'     : file.lastModified,
-        'lastModifiedDate' : file.lastModifiedDate,
-        'name'             : file.name,
-        'size'             : file.size,
-        'type'             : file.type,
-      }
-
-      let fileData = file;
-      fileData.toJSON = function() {
-        return {
-          'lastModified'     : file.lastModified,
-          'lastModifiedDate' : file.lastModifiedDate,
-          'name'             : file.name,
-          'size'             : file.size,
-          'type'             : file.type,
-        };
-      }
-      JSON.stringify(fileData);
-      console.log(fileData)
-      console.log
-
-      ws.binaryType = 'arraybuffer';
-      ws.send(JSON.stringify(
-        {
-          "event":"test",
-          "data":fileData
-        }
-      ))
-      console.log('test')
-
-      var reader = new FileReader();
-      var rawData = new ArrayBuffer();
-
-      reader.loadend = function() {}
-
-      reader.onload = function(e) {
-        rawData = e.target.result;
-        console.log(rawData)
-        rawData.toJSON = function() {
-          return {
-            'lastModified'     : file.lastModified,
-            'lastModifiedDate' : file.lastModifiedDate,
-            'name'             : file.name,
-            'size'             : file.size,
-            'type'             : file.type,
-          };
-        }
-        JSON.stringify(rawData);
-        console.log(rawData)
-        ws.send(JSON.stringify(
-          {
-            "event":"test",
-            "data":rawData
-          }
-        ));
-
-        console.log("파일 전송이 완료 되었습니다.")
-        ws.onmessage = function (e) {
-          alert('!!')
-          console.log(e.data)
-        }
-        ws.send('end');
-      }
-
-      reader.readAsArrayBuffer(file);
-    }
-
-    function addEvent(){
-      document.getElementById("connect").addEventListener("click", connector, false);
-      document.getElementById("send").addEventListener("click", sendFile, false);
-    }
-
-    window.addEventListener("load", addEvent, false);
-  </script>
-
-</head>
-<body>
-
-<input id="file" type="file" >
-<input id="connect" type="button" value="connect">
-<input id="send" type="button" value="send">
-
-</body>
-</html>
+<div style="width:100%; padding:40px 0; background-color:#f0f0f0;margin:0 auto;">
+  <table cellpadding="0" cellspacing="0" align="center"
+         style="margin: 0px auto; width: 94%; max-width: 630px; background: rgb(255, 255, 255); border: 0px;">
+    <tbody>
+    <tr style="margin: 0;padding:0;">
+      <td
+        style="width: 100%; max-width: 630px; margin: 0 auto; position: relative; border-spacing: 0; clear: both; border-collapse: separate;padding:0;overflow:hidden;_width:620px;">
+        <div
+          style="height: 0px; max-height: 0px; border-width: 0px; border-color: initial; border-image: initial; visibility: hidden; line-height: 0px; font-size: 0px; overflow: hidden;display:none;">
+        </div>
+        <table class="stb-block" border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; width:100%;max-width: 630px; clear: both; background: #ffffff; border:0;"
+               width="100%;">
+          <tbody>
+          <tr>
+            <td style="padding: 0px 0 0px 0; line-height: 1.8; border-width: 0px;">
+              <table border="0" cellpadding="0" cellspacing="0"
+                     style="table-layout:fixed;padding: 0px 5px;" width="100%">
+                <tbody>
+                <tr>
+                  <td style="padding: 0px 15px;" width="100%">
+                    <div>
+                      <p style="text-align: justify; margin: 0px;width:100%"><img
+                        src="https://s3.ap-northeast-2.amazonaws.com/img.stibee.com/44236_1618372272.png"
+                        style="width: 100%; display: inline; vertical-align: bottom; max-width: 100%; border-width: 0px; border-color: initial; border-image: initial; text-align: justify;"
+                        width="610"></p>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; width:100%;max-width: 630px; clear: both; background: #ffffff;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td style="padding: 20px 0 5px 0; line-height: 1.8; border-width: 0px;font-size: 14px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="padding: 0px 5px;"
+                     width="100%">
+                <tbody>
+                <tr>
+                  <td style="padding: 0px 15px; mso-line-height-rule: exactly;line-height:1.8;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;font-size: 14px;font-family: AppleSDGothic, apple sd gothic neo, noto sans korean, noto sans korean regular, noto sans cjk kr, noto sans cjk, nanum gothic, malgun gothic, dotum, arial, helvetica, MS Gothic, sans-serif!important; color: #333333"
+                      width="100%">
+                    <div style="text-align: center; font-size: 26px;"><span
+                      style="font-weight: 400; font-size: 26px; text-align: left; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; color: rgb(51, 51, 51); font-style: normal; text-decoration: none;">&nbsp;<span
+                      style="font-size: 26px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; color: rgb(51, 51, 51); font-weight: 700; font-style: normal; text-decoration: none;">Invite Guest in Plask</span></span></div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; width:100%;max-width: 630px; clear: both; background: #ffffff;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td
+              style="padding: 15px 0 15px 0; line-height: 1.8; border-width: 0px;font-size: 14px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="padding: 0px 5px;"
+                     width="100%">
+                <tbody>
+                <tr>
+                  <td style="padding: 0px 15px;mso-line-height-rule: exactly;line-height:1.8;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;font-size: 14px;font-family: AppleSDGothic, apple sd gothic neo, noto sans korean, noto sans korean regular, noto sans cjk kr, noto sans cjk, nanum gothic, malgun gothic, dotum, arial, helvetica, MS Gothic, sans-serif!important; color: #333333"
+                      width="100%">
+                    <div style="font-size: 16px;">
+                      <div style="text-align: center; font-size: 16px;"><span
+                        style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none; color: rgb(102, 102, 102);">Hello!</span>
+                      </div>
+                      <div style="text-align: center; font-size: 16px;"><span
+                        style="color: rgb(102, 102, 102); font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none;">This is </span><span
+                        style="color: rgb(102, 102, 102); font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none;">&nbsp</span><span style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none; color: rgb(0, 0, 0);">PLASK</span><span style="color: rgb(102, 102, 102); font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none;"> about easy animator tool for everyone</span></div>
+                      <div style="text-align: center; font-size: 16px;"><span
+                        style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none; color: rgb(102, 102, 102);">${user}+shared project</span></div>
+                      <div style="text-align: center; font-size: 16px;"><span
+                        style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-weight: 700; font-style: normal; text-decoration: none; color: rgb(102, 102, 102);"><br></span>
+                      </div>
+                      <div style="text-align: center; font-size: 16px;"><span
+                        style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-style: normal; text-decoration: none; font-weight: bold; color: rgb(102, 102, 102);">If you open this project, click below button.</span></div>
+                      <div style="text-align: center; font-size: 16px;"><span style="font-size: 16px; font-family: AppleSDGothic, &quot;apple sd gothic neo&quot;, &quot;noto sans korean&quot;, &quot;noto sans korean regular&quot;, &quot;noto sans cjk kr&quot;, &quot;noto sans cjk&quot;, &quot;nanum gothic&quot;, &quot;malgun gothic&quot;, dotum, arial, helvetica, MS Gothic, sans-serif; font-style: normal; text-decoration: none; font-weight: bold; color: rgb(102, 102, 102);">Thank you</span></div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px 10px; max-width: 630px; clear: both;background: #ffffff;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td style="padding: 15px 0 15px 0; text-align: center; line-height: 1.8; border: 0px;"
+                width="100%">
+              <div style="padding: 10px 10px">
+                <table border="0" cellpadding="0" cellspacing="0" width="auto"
+                       style="border-collapse: separate !important;background: #267eff;border-radius: 3px; border:0; mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0 auto;table-layout:fixed"
+                       align="center">
+                  <tbody>
+                  <tr>
+                    <td style="line-height:1.5;padding: 12px 16px 10px;" align="center">
+                      <a href=${link}
+                         style="font-size: 14px; display: inline; color: rgb(255, 255, 255); background: rgb(38, 126, 255); border-radius: 3px; text-decoration: none; outline: 0px; font-family: AppleSDGothic, apple sd gothic neo, noto sans korean, noto sans korean regular, noto sans cjk kr, noto sans cjk, nanum gothic, malgun gothic, dotum, arial, helvetica, MS Gothic, sans-serif; text-align: center;"
+                         target="_blank">Open Project</a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; width:100%;max-width: 630px; clear: both; background: #ffffff;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td
+              style="padding: 15px 0 20px 0; line-height: 1.8; border-width: 0px;font-size: 14px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="padding: 0px 5px;"
+                     width="100%">
+                <tbody>
+                <tr>
+                  <td style="padding: 0px 15px;mso-line-height-rule: exactly;line-height:1.8;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;font-size: 14px;font-family: AppleSDGothic, apple sd gothic neo, noto sans korean, noto sans korean regular, noto sans cjk kr, noto sans cjk, nanum gothic, malgun gothic, dotum, arial, helvetica, MS Gothic, sans-serif!important; color: #999999"
+                      width="100%">
+                    <div style="font-size: 14px;">
+                      <div style="font-size: 12px;">
+                        <div style="text-align: center; font-size: 12px;"></div>
+                        <div style="font-size: 14px;">
+                          <div style="text-align: center; font-size: 14px;"><span
+                            style="text-align: left; font-size: 14px;">Click this button for opening project</span></div>
+                          <div style="text-align: center; font-size: 14px;"><span
+                            style="text-align: left; font-size: 14px;"></span></div>
+                        </div>
+                        <div style="text-align: center; font-size: 12px;"></div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; max-width: 630px; clear: both; background: #f0f0f0;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td style="padding: 20px 0 15px 0; text-align: center;margin:0 auto 0 auto">
+              <div style="margin: 0 auto"><span
+                style="list-style: none; padding: 0px 3px; margin: 0px;"><a
+                href="http://plask.ai"
+                style="padding: 0px 3px; border-width: 0px; border-image: initial; text-decoration: none; display: inline-block;"
+                target="_blank" title="홈페이지"><span style="display: inline-block;"><img
+                height="32px"
+                src="https://stibee.com/assets/images/sns/grey/sns_icon_homepage.png"
+                style="width: 32px; height: 32px; display: block; border-width: 0px; border-color: initial; border-image: initial;"
+                width="32"></span></a></span><span
+                style="list-style: none; padding: 0px 3px; margin: 0px;"><a
+                href="https://www.facebook.com/shoot.tool"
+                style="padding: 0px 3px; border-width: 0px; border-image: initial; text-decoration: none; display: inline-block;"
+                target="_blank" title="페이스북"><span style="display: inline-block;"><img
+                height="32px"
+                src="https://stibee.com/assets/images/sns/grey/sns_icon_facebook.png"
+                style="width: 32px; height: 32px; display: block; border-width: 0px; border-color: initial; border-image: initial;"
+                width="32"></span></a></span><span
+                style="list-style: none; padding: 0px 3px; margin: 0px;"><a
+                href="https://twitter.com/Shoot_ai"
+                style="padding: 0px 3px; border-width: 0px; border-image: initial; text-decoration: none; display: inline-block;"
+                target="_blank" title="트위터"><span style="display: inline-block;"><img
+                height="32px"
+                src="https://stibee.com/assets/images/sns/grey/sns_icon_twitter.png"
+                style="width: 32px; height: 32px; display: block; border-width: 0px; border-color: initial; border-image: initial;"
+                width="32"></span></a></span><span
+                style="list-style: none; padding: 0px 3px; margin: 0px;"><a
+                href="https://www.instagram.com/shoot.ai/"
+                style="padding: 0px 3px; border-width: 0px; border-image: initial; text-decoration: none; display: inline-block;"
+                target="_blank" title="인스타그램"><span style="display: inline-block;"><img
+                height="32px"
+                src="https://stibee.com/assets/images/sns/grey/sns_icon_instagram.png"
+                style="width: 32px; height: 32px; display: block; border-width: 0px; border-color: initial; border-image: initial;"
+                width="32"></span></a></span><span
+                style="list-style: none; padding: 0px 3px; margin: 0px;"><a
+                href="https://www.youtube.com/channel/UClHOCrckvQEcrkqH4A7PA5A"
+                style="padding: 0px 3px; border-width: 0px; border-image: initial; text-decoration: none; display: inline-block;"
+                target="_blank" title="유튜브"><span style="display: inline-block;"><img
+                height="32px"
+                src="https://stibee.com/assets/images/sns/grey/sns_icon_youtube.png"
+                style="width: 32px; height: 32px; display: block; border-width: 0px; border-color: initial; border-image: initial;"
+                width="32"></span></a></span></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0"
+               style="overflow: hidden; margin: 0px auto; padding: 0px; width:100%;max-width: 630px; clear: both; background: #f0f0f0;border:0;"
+               width="100%">
+          <tbody>
+          <tr>
+            <td style="padding: 5px 0 20px 0; line-height: 1.8; border-width: 0px;font-size: 14px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="padding: 0px 5px;"
+                     width="100%">
+                <tbody>
+                <tr>
+                  <td style="padding: 0px 15px;mso-line-height-rule: exactly;line-height:1.8;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;font-size: 14px;font-family: AppleSDGothic, apple sd gothic neo, noto sans korean, noto sans korean regular, noto sans cjk kr, noto sans cjk, nanum gothic, malgun gothic, dotum, arial, helvetica, MS Gothic, sans-serif!important; color: #333333"
+                      width="100%">
+                    <div style="text-align: center; font-size: 12px;"><span
+                      style="color: rgb(102, 102, 102);">PLASK, Inc.<br></span>
+                    </div>
+                    <div style="text-align: center; font-size: 12px;"><span
+                      style="color: rgb(102, 102, 102);">551, Seolleung-ro,
+                                                            Gangnam-gu, Seoul</span></div>
+                    <div style="text-align: center; font-size: 12px;"></div>
+                    <div style="font-size: 12px;">
+                      <div style="text-align: center; font-size: 12px;"><span
+                        style="color: rgb(153, 153, 153); text-align: left; font-size: 12px;">If you don't want to see newsletter, </span><a target="_blank" delay="150"
+                                                                                                                                             href="mailto:contact@plask.ai" rel="noopener noreferrer"
+                                                                                                                                             style="font-style: inherit; font-weight: inherit; text-align: left; color: rgb(38, 126, 255); display: inline;">contact@plask.ai</a><span
+                        style="text-align: left;"><span
+                        style="color: rgb(38, 126, 255);">&nbsp;</span><span
+                        style="color: rgb(153, 153, 153);">Contact to Email about that.</span></span></div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
