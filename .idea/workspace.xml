@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="delete test file" />
+    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="unused spec file">
+      <change afterPath="$PROJECT_DIR$/nx-prac-workspace/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/client/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/client/client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -110,7 +121,15 @@
       <workItem from="1634613366358" duration="1086000" />
       <workItem from="1634617490409" duration="17256000" />
       <workItem from="1634724197086" duration="312000" />
-      <workItem from="1634724513630" duration="310000" />
+      <workItem from="1634724513630" duration="519000" />
+      <workItem from="1635141765143" duration="1329000" />
+      <workItem from="1635143617875" duration="15708000" />
+      <workItem from="1635237806942" duration="988000" />
+      <workItem from="1635242758839" duration="4000" />
+      <workItem from="1635301880942" duration="3545000" />
+      <workItem from="1635316181100" duration="1822000" />
+      <workItem from="1635399426367" duration="405000" />
+      <workItem from="1635745943644" duration="3664000" />
     </task>
     <task id="LOCAL-00001" summary="Create Nest App with Nx">
       <created>1633418873534</created>
@@ -259,7 +278,28 @@
       <option name="project" value="LOCAL" />
       <updated>1634724784467</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ws setting">
+      <created>1634725001740</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1634725001740</updated>
+    </task>
+    <task id="LOCAL-00023" summary="use file interceptor">
+      <created>1634725017880</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1634725017880</updated>
+    </task>
+    <task id="LOCAL-00024" summary="unused spec file">
+      <created>1634725027051</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1634725027051</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,9 +335,11 @@
     <MESSAGE value="test c&#10;lient" />
     <MESSAGE value="test gateway" />
     <MESSAGE value="test to get file" />
-    <MESSAGE value="ws setting" />
     <MESSAGE value="delete test file" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete test file" />
+    <MESSAGE value="ws setting" />
+    <MESSAGE value="use file interceptor" />
+    <MESSAGE value="unused spec file" />
+    <option name="LAST_COMMIT_MESSAGE" value="unused spec file" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
