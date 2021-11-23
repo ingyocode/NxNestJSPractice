@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="unused spec file">
-      <change afterPath="$PROJECT_DIR$/nx-prac-workspace/.env" afterDir="false" />
+    <list default="true" id="30efe4c1-759d-4a1c-b3a1-b73ee49e3c40" name="Changes" comment="iam port testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/client/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/client/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nx-prac-workspace/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/nx-prac-workspace/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nx-prac-workspace/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/nx-prac-workspace/yarn.lock" afterDir="false" />
     </list>
@@ -129,7 +125,11 @@
       <workItem from="1635301880942" duration="3545000" />
       <workItem from="1635316181100" duration="1822000" />
       <workItem from="1635399426367" duration="405000" />
-      <workItem from="1635745943644" duration="3664000" />
+      <workItem from="1635745943644" duration="3737000" />
+      <workItem from="1636002335505" duration="98000" />
+      <workItem from="1636358975275" duration="1342000" />
+      <workItem from="1637221048197" duration="1767000" />
+      <workItem from="1637653970439" duration="188000" />
     </task>
     <task id="LOCAL-00001" summary="Create Nest App with Nx">
       <created>1633418873534</created>
@@ -299,7 +299,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634725027051</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="ws test">
+      <created>1635754001544</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1635754001544</updated>
+    </task>
+    <task id="LOCAL-00026" summary="html file testing">
+      <created>1635754027558</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1635754027558</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +353,10 @@
     <MESSAGE value="ws setting" />
     <MESSAGE value="use file interceptor" />
     <MESSAGE value="unused spec file" />
-    <option name="LAST_COMMIT_MESSAGE" value="unused spec file" />
+    <MESSAGE value="ws test" />
+    <MESSAGE value="html file testing" />
+    <MESSAGE value="iam port testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="iam port testing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

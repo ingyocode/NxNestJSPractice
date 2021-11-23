@@ -1,32 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import {DateTime, Settings} from "luxon";
+import {Iamport,Request} from 'iamport-rest-client-nodejs'
+
+const {Banks} = Request;
+
+
 
 @Injectable()
 export class TestService {
-  kstToUtc() {
-    let date = DateTime.now().toUTC(); //utc Time
-    date = date.toUTC()
-    return date;
-  }
-  utcToKst() {
-    /*
-    let date = DateTime.now().toUTC(); // utc time
-    date = date.plus({hours:9})
 
-     */
-  }
-  changeTime(region: AWSRegionEnum, time: DateTime) {
-    if (region == 0) {
-      return time.setZone('UTC').toISO();
-    } else if (region == 1) {
-      return time.setZone('America/Los_Angeles').toISO();
-    } else {
-      return '!';
-    }
+  public iamport = new Iamport({
+    apiKey:'imp_apikey',
+    apiSecret: 'ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6bkA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f'
+  });
+  testing() {
+    const getBanks = Banks.getBanks();
+    getBanks.request(this.iamport).then(res => console.log(res.data)).catch(err => console.log(err.response.data))
   }
 
-}
-export enum AWSRegionEnum {
-  AP_NORTHEAST_2 ,
-  US_NORTHWEST_1
 }
