@@ -3,8 +3,6 @@ import {Iamport,Request} from 'iamport-rest-client-nodejs'
 
 const {Banks} = Request;
 
-
-
 @Injectable()
 export class TestService {
 
