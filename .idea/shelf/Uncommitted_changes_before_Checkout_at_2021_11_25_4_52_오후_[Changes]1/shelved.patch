@@ -1,0 +1,74 @@
+Index: nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Controller, Get} from '@nestjs/common';\nimport {ApiOperation} from \"@nestjs/swagger\";\nimport {TestService} from \"./test.service\";\n\n@Controller('test')\nexport class TestController {\n  constructor(\n    private readonly testservice:TestService\n  ) {\n  }\n  @ApiOperation({summary:\"테스트용 GET\",description:\"정상적으로 작동하는지 확인시켜줌\"})\n  @Get('')\n  TimeCheck() {\n    this.testservice.testing();\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts b/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts
+--- a/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts	
++++ b/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.controller.ts	
+@@ -1,16 +1,19 @@
+ import {Controller, Get} from '@nestjs/common';
+ import {ApiOperation} from "@nestjs/swagger";
+ import {TestService} from "./test.service";
+-
++import {TestRepository} from "../../../../libs/typeorm/repository/test.repository";
+ @Controller('test')
+ export class TestController {
+   constructor(
+-    private readonly testservice:TestService
++    private readonly testservice:TestService,
++    private readonly testRepository:TestRepository
+   ) {
+   }
+   @ApiOperation({summary:"테스트용 GET",description:"정상적으로 작동하는지 확인시켜줌"})
+   @Get('')
+   TimeCheck() {
+-    this.testservice.testing();
++    const result = this.testservice.testing();
++
++    return result;
+   }
+ }
+Index: nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Module } from '@nestjs/common';\nimport {TestController} from \"./test.controller\";\nimport {TestService} from \"./test.service\";\n\n@Module({\n  providers:[TestService],\n  controllers:[TestController]\n})\nexport class TestModule {}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.module.ts b/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.module.ts
+--- a/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.module.ts	
++++ b/nx-prac-workspace/apps/nx-prac-nest-js/src/test/test.module.ts	
+@@ -1,9 +1,15 @@
+ import { Module } from '@nestjs/common';
+ import {TestController} from "./test.controller";
+ import {TestService} from "./test.service";
++import {TypeOrmModule} from "@nestjs/typeorm";
++import {TestRepository} from "../../../../libs/typeorm/repository/test.repository";
++import {Test} from "../../../../libs/typeorm/entity/test";
++import {TypeormModule} from "../../../../libs/typeorm/typeorm.module";
+ 
+ @Module({
++  imports:[TypeOrmModule.forFeature([TestRepository]),TypeormModule],
+   providers:[TestService],
+-  controllers:[TestController]
++  controllers:[TestController],
++  exports:[TestService]
+ })
+ export class TestModule {}
+Index: nx-prac-workspace/.env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/nx-prac-workspace/.env b/nx-prac-workspace/.env
+--- a/nx-prac-workspace/.env	
++++ b/nx-prac-workspace/.env	
+@@ -1,0 +1,5 @@
++DB_HOST=127.0.0.1
++DB_PORT=3306
++DB_DATABASE=test
++DB_USERNAME=root
++DB_PASSWORD=PASSWORD
